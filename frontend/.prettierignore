@@ -1,0 +1,5 @@
+# Ignorar archivos generados y dependencias
+node_modules/
+.next/
+out/
+*.tsbuildinfo
