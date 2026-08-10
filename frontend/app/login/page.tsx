@@ -40,7 +40,9 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className="form-group">
-            <label className="form-label" htmlFor="email">Email</label>
+            <label className="form-label" htmlFor="email">
+              Email
+            </label>
             <input
               id="email"
               type="email"
@@ -53,7 +55,9 @@ export default function LoginPage() {
           </div>
 
           <div className="form-group">
-            <label className="form-label" htmlFor="password">Contraseña</label>
+            <label className="form-label" htmlFor="password">
+              Contraseña
+            </label>
             <input
               id="password"
               type="password"
@@ -77,8 +81,7 @@ export default function LoginPage() {
         </form>
 
         <p className={styles.link}>
-          ¿No tienes cuenta?{' '}
-          <Link href="/register">Regístrate</Link>
+          ¿No tienes cuenta? <Link href="/register">Regístrate</Link>
         </p>
       </div>
     </div>

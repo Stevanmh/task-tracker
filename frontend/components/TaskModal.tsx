@@ -16,21 +16,24 @@ export default function TaskModal({ task, users, onSave, onClose }: Props) {
   const [status, setStatus] = useState<TaskStatus>(task?.status ?? 'Pending');
   const [priority, setPriority] = useState<TaskPriority>(task?.priority ?? 'Medium');
   const [assignedToId, setAssignedToId] = useState<number | undefined>(task?.assignedTo?.id);
-  const [deadline, setDeadline] = useState(
-    task?.deadline ? task.deadline.split('T')[0] : ''
-  );
+  const [deadline, setDeadline] = useState(task?.deadline ? task.deadline.split('T')[0] : '');
   const [error, setError] = useState('');
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    function onKey(e: KeyboardEvent) { if (e.key === 'Escape') onClose(); }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') onClose();
+    }
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
   }, [onClose]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!title.trim()) { setError('El título es requerido'); return; }
+    if (!title.trim()) {
+      setError('El título es requerido');
+      return;
+    }
     setError('');
     setSaving(true);
     try {
@@ -54,12 +57,16 @@ export default function TaskModal({ task, users, onSave, onClose }: Props) {
       <div className="modal">
         <div className={styles.header}>
           <h2 className={styles.title}>{task ? 'Editar tarea' : 'Nueva tarea'}</h2>
-          <button className={styles.closeBtn} onClick={onClose} aria-label="Cerrar">✕</button>
+          <button className={styles.closeBtn} onClick={onClose} aria-label="Cerrar">
+            ✕
+          </button>
         </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className="form-group">
-            <label className="form-label" htmlFor="task-title">Título *</label>
+            <label className="form-label" htmlFor="task-title">
+              Título *
+            </label>
             <input
               id="task-title"
               type="text"
@@ -73,7 +80,9 @@ export default function TaskModal({ task, users, onSave, onClose }: Props) {
           </div>
 
           <div className="form-group">
-            <label className="form-label" htmlFor="task-desc">Descripción</label>
+            <label className="form-label" htmlFor="task-desc">
+              Descripción
+            </label>
             <textarea
               id="task-desc"
               placeholder="Detalles opcionales..."
@@ -87,16 +96,28 @@ export default function TaskModal({ task, users, onSave, onClose }: Props) {
 
           <div className={styles.row}>
             <div className="form-group">
-              <label className="form-label" htmlFor="task-status">Estado</label>
-              <select id="task-status" value={status} onChange={e => setStatus(e.target.value as TaskStatus)}>
+              <label className="form-label" htmlFor="task-status">
+                Estado
+              </label>
+              <select
+                id="task-status"
+                value={status}
+                onChange={e => setStatus(e.target.value as TaskStatus)}
+              >
                 <option value="Pending">Pendiente</option>
                 <option value="InProgress">En progreso</option>
                 <option value="Done">Hecha</option>
               </select>
             </div>
             <div className="form-group">
-              <label className="form-label" htmlFor="task-priority">Prioridad</label>
-              <select id="task-priority" value={priority} onChange={e => setPriority(e.target.value as TaskPriority)}>
+              <label className="form-label" htmlFor="task-priority">
+                Prioridad
+              </label>
+              <select
+                id="task-priority"
+                value={priority}
+                onChange={e => setPriority(e.target.value as TaskPriority)}
+              >
                 <option value="Low">Baja</option>
                 <option value="Medium">Media</option>
                 <option value="High">Alta</option>
@@ -106,18 +127,26 @@ export default function TaskModal({ task, users, onSave, onClose }: Props) {
 
           <div className={styles.row}>
             <div className="form-group">
-              <label className="form-label" htmlFor="task-assignee">Responsable</label>
+              <label className="form-label" htmlFor="task-assignee">
+                Responsable
+              </label>
               <select
                 id="task-assignee"
                 value={assignedToId ?? ''}
                 onChange={e => setAssignedToId(e.target.value ? Number(e.target.value) : undefined)}
               >
                 <option value="">Sin asignar</option>
-                {users.map(u => <option key={u.id} value={u.id}>{u.name}</option>)}
+                {users.map(u => (
+                  <option key={u.id} value={u.id}>
+                    {u.name}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="form-group">
-              <label className="form-label" htmlFor="task-deadline">Fecha límite</label>
+              <label className="form-label" htmlFor="task-deadline">
+                Fecha límite
+              </label>
               <input
                 id="task-deadline"
                 type="date"

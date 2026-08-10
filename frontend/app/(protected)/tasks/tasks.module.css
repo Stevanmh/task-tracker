@@ -1,4 +1,5 @@
-.loading, .empty {
+.loading,
+.empty {
   text-align: center;
   padding: 3rem;
   color: var(--text-muted);
@@ -21,7 +22,10 @@
   margin-bottom: 0.2rem;
 }
 
-.subtitle { font-size: 0.85rem; color: var(--text-muted); }
+.subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
 
 .filters {
   display: grid;
@@ -37,7 +41,11 @@
   gap: 1rem;
 }
 
-.taskCard { display: flex; flex-direction: column; gap: 0.75rem; }
+.taskCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
 
 .cardTop {
   display: flex;
@@ -47,9 +55,16 @@
   flex-wrap: wrap;
 }
 
-.badges { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.badges {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
 
-.actions { display: flex; gap: 0.4rem; }
+.actions {
+  display: flex;
+  gap: 0.4rem;
+}
 
 .taskTitle {
   font-weight: 600;

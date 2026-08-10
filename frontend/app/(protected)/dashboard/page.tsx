@@ -8,7 +8,9 @@ import styles from './dashboard.module.css';
 function MetricCard({ label, value, color }: { label: string; value: number; color: string }) {
   return (
     <div className={`card ${styles.metric}`} style={{ borderTopColor: color }}>
-      <p className={styles.metricValue} style={{ color }}>{value}</p>
+      <p className={styles.metricValue} style={{ color }}>
+        {value}
+      </p>
       <p className={styles.metricLabel}>{label}</p>
     </div>
   );
@@ -66,7 +68,9 @@ export default function DashboardPage() {
       <div className={styles.section}>
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Tareas recientes</h2>
-          <Link href="/tasks" className={styles.seeAll}>Ver todas →</Link>
+          <Link href="/tasks" className={styles.seeAll}>
+            Ver todas →
+          </Link>
         </div>
 
         {recent.length === 0 ? (

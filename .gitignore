@@ -28,8 +28,8 @@ out/
 # (todos los docs se versionan — son entregables de la prueba)
 
 # ─── Documentación interna (no requerida por la prueba) ──────
-docs/decisions/      # ADRs — contenido ya cubierto en AGENTIC_WORKFLOW.md
-frontend/README.md   # Redundante con README.md principal
+docs/decisions/
+# frontend/README.md eliminado del tracking — redundante con README.md principal
 
 # ─── Auto-generados por herramientas (no parte de la app) ────
 frontend/AGENTS.md

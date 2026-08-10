@@ -82,4 +82,6 @@
   font-weight: 500;
 }
 
-.link a:hover { text-decoration: underline; }
+.link a:hover {
+  text-decoration: underline;
+}

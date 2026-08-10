@@ -25,7 +25,10 @@
   flex-shrink: 0;
 }
 
-.logoIcon { color: var(--primary); font-size: 1.1rem; }
+.logoIcon {
+  color: var(--primary);
+  font-size: 1.1rem;
+}
 
 .links {
   display: flex;
@@ -40,11 +43,19 @@
   font-size: 0.9rem;
   color: var(--text-muted);
   font-weight: 500;
-  transition: color 0.15s, background 0.15s;
+  transition:
+    color 0.15s,
+    background 0.15s;
 }
 
-.link:hover { color: var(--text); background: var(--bg-elevated); }
-.active { color: var(--text) !important; background: var(--bg-elevated); }
+.link:hover {
+  color: var(--text);
+  background: var(--bg-elevated);
+}
+.active {
+  color: var(--text) !important;
+  background: var(--bg-elevated);
+}
 
 .user {
   display: flex;

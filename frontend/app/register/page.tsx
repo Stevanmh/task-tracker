@@ -45,7 +45,9 @@ export default function RegisterPage() {
 
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className="form-group">
-            <label className="form-label" htmlFor="name">Nombre</label>
+            <label className="form-label" htmlFor="name">
+              Nombre
+            </label>
             <input
               id="name"
               type="text"
@@ -58,7 +60,9 @@ export default function RegisterPage() {
           </div>
 
           <div className="form-group">
-            <label className="form-label" htmlFor="email">Email</label>
+            <label className="form-label" htmlFor="email">
+              Email
+            </label>
             <input
               id="email"
               type="email"
@@ -70,7 +74,9 @@ export default function RegisterPage() {
           </div>
 
           <div className="form-group">
-            <label className="form-label" htmlFor="password">Contraseña</label>
+            <label className="form-label" htmlFor="password">
+              Contraseña
+            </label>
             <input
               id="password"
               type="password"
@@ -94,8 +100,7 @@ export default function RegisterPage() {
         </form>
 
         <p className={styles.link}>
-          ¿Ya tienes cuenta?{' '}
-          <Link href="/login">Inicia sesión</Link>
+          ¿Ya tienes cuenta? <Link href="/login">Inicia sesión</Link>
         </p>
       </div>
     </div>

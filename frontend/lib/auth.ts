@@ -2,10 +2,7 @@ import { AuthResponse, User } from '@/types';
 
 export function saveAuth(data: AuthResponse): void {
   localStorage.setItem('token', data.token);
-  localStorage.setItem(
-    'user',
-    JSON.stringify({ id: data.id, name: data.name, email: data.email })
-  );
+  localStorage.setItem('user', JSON.stringify({ id: data.id, name: data.name, email: data.email }));
 }
 
 export function getUser(): User | null {

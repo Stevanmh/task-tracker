@@ -1,7 +1,14 @@
 'use client';
 import { useEffect, useState, useCallback } from 'react';
 import { tasksApi, usersApi } from '@/lib/api';
-import { TaskResponse, TaskFilters, User, CreateTaskRequest, TaskStatus, TaskPriority } from '@/types';
+import {
+  TaskResponse,
+  TaskFilters,
+  User,
+  CreateTaskRequest,
+  TaskStatus,
+  TaskPriority,
+} from '@/types';
 import TaskModal from '@/components/TaskModal';
 import styles from './tasks.module.css';
 
@@ -35,8 +42,12 @@ export default function TasksPage() {
     }
   }, [filters]);
 
-  useEffect(() => { usersApi.getAll().then(setUsers); }, []);
-  useEffect(() => { loadTasks(); }, [loadTasks]);
+  useEffect(() => {
+    usersApi.getAll().then(setUsers);
+  }, []);
+  useEffect(() => {
+    loadTasks();
+  }, [loadTasks]);
 
   async function handleDelete(id: number) {
     if (!confirm('¿Eliminar esta tarea?')) return;
@@ -55,17 +66,28 @@ export default function TasksPage() {
     loadTasks();
   }
 
-  function openCreate() { setEditTask(null); setShowModal(true); }
-  function openEdit(task: TaskResponse) { setEditTask(task); setShowModal(true); }
+  function openCreate() {
+    setEditTask(null);
+    setShowModal(true);
+  }
+  function openEdit(task: TaskResponse) {
+    setEditTask(task);
+    setShowModal(true);
+  }
 
   return (
     <div>
       <div className={styles.header}>
         <div>
           <h1 className={styles.title}>Tareas</h1>
-          <p className={styles.subtitle}>{tasks.length} tarea{tasks.length !== 1 ? 's' : ''} encontrada{tasks.length !== 1 ? 's' : ''}</p>
+          <p className={styles.subtitle}>
+            {tasks.length} tarea{tasks.length !== 1 ? 's' : ''} encontrada
+            {tasks.length !== 1 ? 's' : ''}
+          </p>
         </div>
-        <button className="btn btn-primary" onClick={openCreate}>+ Nueva tarea</button>
+        <button className="btn btn-primary" onClick={openCreate}>
+          + Nueva tarea
+        </button>
       </div>
 
       {/* Filtros */}
@@ -74,7 +96,9 @@ export default function TasksPage() {
           <label className="form-label">Estado</label>
           <select
             value={filters.status ?? ''}
-            onChange={e => setFilters(f => ({ ...f, status: (e.target.value as TaskStatus) || undefined }))}
+            onChange={e =>
+              setFilters(f => ({ ...f, status: (e.target.value as TaskStatus) || undefined }))
+            }
           >
             <option value="">Todos</option>
             <option value="Pending">Pendiente</option>
@@ -86,7 +110,9 @@ export default function TasksPage() {
           <label className="form-label">Prioridad</label>
           <select
             value={filters.priority ?? ''}
-            onChange={e => setFilters(f => ({ ...f, priority: (e.target.value as TaskPriority) || undefined }))}
+            onChange={e =>
+              setFilters(f => ({ ...f, priority: (e.target.value as TaskPriority) || undefined }))
+            }
           >
             <option value="">Todas</option>
             <option value="Low">Baja</option>
@@ -98,10 +124,19 @@ export default function TasksPage() {
           <label className="form-label">Responsable</label>
           <select
             value={filters.assignedToId ?? ''}
-            onChange={e => setFilters(f => ({ ...f, assignedToId: e.target.value ? Number(e.target.value) : undefined }))}
+            onChange={e =>
+              setFilters(f => ({
+                ...f,
+                assignedToId: e.target.value ? Number(e.target.value) : undefined,
+              }))
+            }
           >
             <option value="">Todos</option>
-            {users.map(u => <option key={u.id} value={u.id}>{u.name}</option>)}
+            {users.map(u => (
+              <option key={u.id} value={u.id}>
+                {u.name}
+              </option>
+            ))}
           </select>
         </div>
         <button
@@ -130,8 +165,12 @@ export default function TasksPage() {
                   <PriorityBadge priority={task.priority} />
                 </div>
                 <div className={styles.actions}>
-                  <button className="btn btn-ghost btn-sm" onClick={() => openEdit(task)}>Editar</button>
-                  <button className="btn btn-danger btn-sm" onClick={() => handleDelete(task.id)}>Eliminar</button>
+                  <button className="btn btn-ghost btn-sm" onClick={() => openEdit(task)}>
+                    Editar
+                  </button>
+                  <button className="btn btn-danger btn-sm" onClick={() => handleDelete(task.id)}>
+                    Eliminar
+                  </button>
                 </div>
               </div>
 
@@ -154,7 +193,10 @@ export default function TasksPage() {
           task={editTask}
           users={users}
           onSave={handleSave}
-          onClose={() => { setShowModal(false); setEditTask(null); }}
+          onClose={() => {
+            setShowModal(false);
+            setEditTask(null);
+          }}
         />
       )}
     </div>

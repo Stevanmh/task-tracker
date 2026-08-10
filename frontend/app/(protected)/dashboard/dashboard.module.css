@@ -23,7 +23,10 @@
   margin-bottom: 0.25rem;
 }
 
-.subtitle { color: var(--text-muted); font-size: 0.9rem; }
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
 
 .metrics {
   display: grid;
@@ -51,7 +54,9 @@
   font-weight: 500;
 }
 
-.section { margin-bottom: 2rem; }
+.section {
+  margin-bottom: 2rem;
+}
 
 .sectionHeader {
   display: flex;
@@ -71,9 +76,15 @@
   font-weight: 500;
 }
 
-.seeAll:hover { text-decoration: underline; }
+.seeAll:hover {
+  text-decoration: underline;
+}
 
-.taskList { display: flex; flex-direction: column; gap: 0.6rem; }
+.taskList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
 
 .taskRow {
   display: flex;
@@ -83,11 +94,21 @@
   padding: 1rem 1.25rem;
 }
 
-.taskInfo { display: flex; flex-direction: column; gap: 0.2rem; }
+.taskInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
 
-.taskTitle { font-weight: 500; font-size: 0.95rem; }
+.taskTitle {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
 
-.taskMeta { font-size: 0.8rem; color: var(--text-muted); }
+.taskMeta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
 
 .empty {
   text-align: center;
