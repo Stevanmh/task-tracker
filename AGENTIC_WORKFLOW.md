@@ -1,6 +1,6 @@
 # AGENTIC_WORKFLOW.md
 
-Registro del proceso de desarrollo con asistencia de IA (**AntiGravity IDE**) para la prueba técnica de Jiro/Accenture.
+Registro del proceso de desarrollo con asistencia de IA (**AntiGravity IDE**) para la prueba técnica de Jiro.
 
 ---
 
@@ -264,6 +264,57 @@ npm run format # 15 archivos formateados ✅
 
 ---
 
+### [FEAT-06] — CRUD de tareas con filtros dinámicos y dashboard
+
+**Prompt dado al agente:**
+> "Implementa el módulo de tareas: entidad `TaskItem` con título, descripción, estado (Pending/InProgress/Done), prioridad (Low/Medium/High), responsable y fecha límite. CRUD completo con filtros combinables por estado, prioridad y responsable. El endpoint GET /api/tasks debe soportar los tres filtros como query params opcionales. También un endpoint GET /api/dashboard que retorne el conteo de tareas por estado."
+
+**Propuesta del agente:**
+- `TaskItem` como entidad EF Core con navegación a `User` (creador y responsable)
+- `ITaskRepository` con método `GetAllAsync(status?, priority?, assignedToId?)` — los filtros son opcionales y combinables
+- `TaskService` con método `GetDashboardAsync()` usando `GetStatusCountsAsync()` del repositorio
+- Separación en `TasksController` y `DashboardController` para responsabilidad única
+
+**Revisión humana:**
+La separación de dashboard en su propio controller es correcta — mezclar métricas con CRUD rompe el principio de responsabilidad única. La firma del repositorio con parámetros nullable es más limpia que recibir un objeto filtro, ya que los filtros son pocos y simples.
+
+**Decisión:** ✅ Aceptado
+
+**Implementación:**
+- `backend/src/Models/TaskItem.cs` — entidad con FK a User (creador + responsable)
+- `backend/src/Models/Enums/` — `TaskItemStatus.cs`, `TaskItemPriority.cs`
+- `backend/src/Repositories/ITaskRepository.cs` + `TaskRepository.cs`
+- `backend/src/Services/ITaskService.cs` + `TaskService.cs`
+- `backend/src/Controllers/TasksController.cs` — CRUD + filtros
+- `backend/src/Controllers/DashboardController.cs` — métricas
+
+**Validación:** CRUD verificado manualmente en Swagger UI. Filtros combinados probados: `?status=Pending&priority=High` retorna solo las tareas correctas ✅
+
+---
+
+### [FEAT-07] — Tests unitarios del módulo de tareas
+
+**Prompt dado al agente:**
+> "Agrega tests unitarios para `TaskService` usando el mismo patrón de `AuthServiceTests` (Moq + ITaskRepository). Cubre: GetAll con y sin filtros, GetById encontrado/no encontrado, Create (verificar trim del título y asignación de createdById), Update (lanza KeyNotFoundException si no existe, actualiza campos), Delete (lanza KeyNotFoundException si no existe, llama al repositorio), Dashboard (suma correcta de conteos)."
+
+**Propuesta del agente:**
+11 tests cubriendo todos los métodos públicos de `TaskService`.
+
+**Revisión humana:**
+El helper `MakeTask()` es necesario porque `MapToResponse()` accede a la propiedad de navegación `CreatedBy` — sin inicializarla, los tests fallarían con `NullReferenceException`. El agente lo incluyó correctamente.
+
+**Decisión:** ✅ Aceptado
+
+**Implementación:** `backend/tests/Unit/TaskServiceTests.cs` — 11 tests
+
+**Validación:**
+```bash
+dotnet test backend/tests --verbosity normal
+# Pruebas totales: 21 | Correcto: 21 ✅
+```
+
+---
+
 ## Resumen de decisiones
 
 | ID | Tipo | Título | Decisión |
@@ -276,3 +327,5 @@ npm run format # 15 archivos formateados ✅
 | FIX-03 | Fix | Puerto del backend desalineado (5162→5000) | ✅ Aceptado |
 | FEAT-04 | Feature | Auth guard en Next.js App Router | ✅ Aceptado (con tradeoff) |
 | FEAT-05 | Feature | Linting y formateo (ESLint + Prettier + EditorConfig) | 🔄 Modificado |
+| FEAT-06 | Feature | CRUD de tareas con filtros dinámicos y dashboard | ✅ Aceptado |
+| FEAT-07 | Feature | Tests unitarios de TaskService (11 tests) | ✅ Aceptado |

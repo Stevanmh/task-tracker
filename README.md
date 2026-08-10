@@ -1,6 +1,6 @@
 # Task Tracker — Prueba Técnica Fullstack
 
-Sistema de gestión de tareas de equipo con seguimiento de estado, prioridad y responsables. Desarrollado como prueba técnica para la posición de Desarrollador Fullstack en Jiro (Accenture).
+Sistema de gestión de tareas de equipo con seguimiento de estado, prioridad y responsables. Desarrollado como prueba técnica para la posición de Desarrollador Fullstack en Jiro.
 
 ---
 
@@ -69,7 +69,7 @@ App disponible en → `http://localhost:3000`
 # Detener el backend primero (Ctrl+C), luego:
 dotnet test backend/tests
 ```
-Resultado esperado: `total: 10; con errores: 0; correcto: 10`
+Resultado esperado: `total: 21; con errores: 0; correcto: 21`
 
 ---
 

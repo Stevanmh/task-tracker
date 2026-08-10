@@ -133,10 +133,10 @@ dotnet test backend/tests
 
 Resultado esperado:
 ```
-Pruebas totales: 10; con errores: 0; correcto: 10
+Pruebas totales: 21; con errores: 0; correcto: 21
 ```
 
-Para ver los tests en detalle con sus nombres:
+De los 21 tests: **10 unitarios** (AuthService + TaskService) y **4 de integración** (endpoints HTTP).
 ```bash
 dotnet test backend/tests --verbosity normal
 ```
