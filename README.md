@@ -6,6 +6,10 @@ Sistema de gestión de tareas de equipo con seguimiento de estado, prioridad y r
 
 ## Vista de la aplicación
 
+| Login |
+|:---:|
+| ![Login](docs/screenshots/login.png) |
+
 | Dashboard | Lista de Tareas |
 |:---:|:---:|
 | ![Dashboard](docs/screenshots/dashboard.png) | ![Tasks](docs/screenshots/tasks.png) |
