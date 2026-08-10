@@ -1,13 +1,22 @@
 'use client';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { logout, getUser } from '@/lib/auth';
+import { User } from '@/types';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
   const router = useRouter();
   const pathname = usePathname();
-  const user = getUser();
+  const [user, setUser] = useState<User | null>(null);
+
+  // getUser() lee localStorage — solo disponible en el cliente.
+  // Leerlo en useEffect garantiza que SSR y el primer render del cliente
+  // sean idénticos (null), eliminando el hydration mismatch.
+  useEffect(() => {
+    setUser(getUser());
+  }, []);
 
   function handleLogout() {
     logout();
@@ -47,3 +56,4 @@ export default function Navbar() {
     </nav>
   );
 }
+
