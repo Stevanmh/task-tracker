@@ -1,4 +1,4 @@
-namespace TaskTracker.Api.DTOs.Dashboard;
+﻿namespace TaskTracker.Api.DTOs.Dashboard;
 
 public class DashboardResponse
 {

@@ -1,4 +1,4 @@
-namespace TaskTracker.Api.Models.Enums;
+﻿namespace TaskTracker.Api.Models.Enums;
 
 public enum TaskItemPriority
 {

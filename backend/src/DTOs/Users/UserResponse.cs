@@ -1,4 +1,4 @@
-namespace TaskTracker.Api.DTOs.Users;
+﻿namespace TaskTracker.Api.DTOs.Users;
 
 public class UserResponse
 {

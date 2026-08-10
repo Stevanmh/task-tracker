@@ -1,4 +1,4 @@
-namespace TaskTracker.Api.Models;
+﻿namespace TaskTracker.Api.Models;
 
 public class User
 {

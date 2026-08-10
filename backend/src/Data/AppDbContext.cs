@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TaskTracker.Api.Models;
 using TaskTracker.Api.Models.Enums;
 

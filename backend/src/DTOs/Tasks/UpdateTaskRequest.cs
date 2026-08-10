@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using TaskTracker.Api.Models.Enums;
 
 namespace TaskTracker.Api.DTOs.Tasks;

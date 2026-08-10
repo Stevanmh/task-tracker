@@ -1,4 +1,4 @@
-using TaskTracker.Api.Models.Enums;
+﻿using TaskTracker.Api.Models.Enums;
 
 namespace TaskTracker.Api.Models;
 

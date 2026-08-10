@@ -1,4 +1,4 @@
-namespace TaskTracker.Api.DTOs.Auth;
+﻿namespace TaskTracker.Api.DTOs.Auth;
 
 public class AuthResponse
 {

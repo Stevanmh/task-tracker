@@ -1,4 +1,4 @@
-using DotNetEnv;
+﻿using DotNetEnv;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -13,17 +13,27 @@ Env.TraversePath().Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ─── Base de datos (SQL Server via EF Core) ──────────────────
-var connectionString =
-    $"Server={Environment.GetEnvironmentVariable("DB_SERVER")}," +
-    $"{Environment.GetEnvironmentVariable("DB_PORT")};" +
-    $"Database={Environment.GetEnvironmentVariable("DB_NAME")};" +
-    $"User Id={Environment.GetEnvironmentVariable("DB_USER")};" +
-    $"Password={Environment.GetEnvironmentVariable("DB_PASSWORD")};" +
-    $"TrustServerCertificate=True;";
+// ─── Base de datos ────────────────────────────────────────────
+// En entorno "Testing" (integration tests) usamos InMemory.
+// En Development/Production usamos SQL Server via Docker.
+if (builder.Environment.IsEnvironment("Testing"))
+{
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseInMemoryDatabase("TaskTrackerTestDb"));
+}
+else
+{
+    var connectionString =
+        $"Server={Environment.GetEnvironmentVariable("DB_SERVER")}," +
+        $"{Environment.GetEnvironmentVariable("DB_PORT")};" +
+        $"Database={Environment.GetEnvironmentVariable("DB_NAME")};" +
+        $"User Id={Environment.GetEnvironmentVariable("DB_USER")};" +
+        $"Password={Environment.GetEnvironmentVariable("DB_PASSWORD")};" +
+        $"TrustServerCertificate=True;";
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseSqlServer(connectionString));
+}
 
 // ─── Repositorios ─────────────────────────────────────────────
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -93,3 +103,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+// Necesario para que WebApplicationFactory<Program> pueda acceder en los tests de integración
+public partial class Program { }

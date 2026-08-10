@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TaskTracker.Api.DTOs.Auth;
 using TaskTracker.Api.Services;
 

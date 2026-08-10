@@ -1,4 +1,4 @@
-namespace TaskTracker.Api.Middleware;
+﻿namespace TaskTracker.Api.Middleware;
 
 public class ErrorHandlingMiddleware
 {
