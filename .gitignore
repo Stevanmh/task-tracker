@@ -24,12 +24,12 @@ out/
 # ─── Docker ─────────────────────────────────────────────────
 # (docker-compose.yml SÍ se versiona — solo ignoramos datos locales)
 
-# ─── Se suben solo en la entrega final ──────────────────────
-docs/decisions/
-AGENTIC_WORKFLOW.md
-docs/api.md
-docs/setup.md
-docs/architecture.md
+# ─── Documentación — parte del repositorio ──────────────────
+# (todos los docs se versionan — son entregables de la prueba)
+
+# ─── Documentación interna (no requerida por la prueba) ──────
+docs/decisions/      # ADRs — contenido ya cubierto en AGENTIC_WORKFLOW.md
+frontend/README.md   # Redundante con README.md principal
 
 # ─── Auto-generados por herramientas (no parte de la app) ────
 frontend/AGENTS.md
