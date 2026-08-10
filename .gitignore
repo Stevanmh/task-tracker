@@ -29,6 +29,7 @@ docs/decisions/
 AGENTIC_WORKFLOW.md
 docs/api.md
 docs/setup.md
+docs/architecture.md
 
 # ─── IDE ─────────────────────────────────────────────────────
 .vscode/settings.json

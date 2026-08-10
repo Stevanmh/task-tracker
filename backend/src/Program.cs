@@ -4,9 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using TaskTracker.Api.Data;
+using TaskTracker.Api.Middleware;
+using TaskTracker.Api.Repositories;
+using TaskTracker.Api.Services;
 
 // ─── Cargar variables de entorno desde el .env ───────────────
-// Busca el .env subiendo desde el directorio del proyecto
 Env.TraversePath().Load();
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +24,14 @@ var connectionString =
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
+
+// ─── Repositorios ─────────────────────────────────────────────
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+
+// ─── Servicios ────────────────────────────────────────────────
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ITaskService, TaskService>();
 
 // ─── Autenticación JWT ───────────────────────────────────────
 var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET")
@@ -56,10 +66,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
-        // Respuestas en camelCase (estándar para APIs consumidas por JS)
         options.JsonSerializerOptions.PropertyNamingPolicy =
             System.Text.Json.JsonNamingPolicy.CamelCase;
-        // Enums como strings legibles ("Pending", no 0)
         options.JsonSerializerOptions.Converters.Add(
             new System.Text.Json.Serialization.JsonStringEnumConverter());
     });
@@ -70,6 +78,9 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // ─── Pipeline de middlewares ──────────────────────────────────
+// El manejo de errores debe ir primero para capturar excepciones de toda la pipeline
+app.UseMiddleware<ErrorHandlingMiddleware>();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
