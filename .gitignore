@@ -31,6 +31,10 @@ docs/api.md
 docs/setup.md
 docs/architecture.md
 
+# ─── Auto-generados por herramientas (no parte de la app) ────
+frontend/AGENTS.md
+frontend/CLAUDE.md
+
 # ─── IDE ─────────────────────────────────────────────────────
 .vscode/settings.json
 .idea/
