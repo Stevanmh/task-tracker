@@ -1,0 +1,41 @@
+# ─── .NET ───────────────────────────────────────────────────
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.csproj.user
+TestResults/
+
+# ─── Node / Next.js ─────────────────────────────────────────
+node_modules/
+.next/
+out/
+.npm
+*.tsbuildinfo
+
+# ─── Variables de entorno ────────────────────────────────────
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ─── Docker ─────────────────────────────────────────────────
+# (docker-compose.yml SÍ se versiona — solo ignoramos datos locales)
+
+# ─── Se suben solo en la entrega final ──────────────────────
+docs/decisions/
+AGENTIC_WORKFLOW.md
+docs/api.md
+docs/setup.md
+
+# ─── IDE ─────────────────────────────────────────────────────
+.vscode/settings.json
+.idea/
+*.DS_Store
+Thumbs.db
+
+# ─── Logs ────────────────────────────────────────────────────
+*.log
+logs/
