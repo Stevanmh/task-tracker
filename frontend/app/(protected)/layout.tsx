@@ -1,20 +1,21 @@
 'use client';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { isAuthenticated } from '@/lib/auth';
 import Navbar from '@/components/Navbar';
 import styles from './protected.module.css';
 
 export default function ProtectedLayout({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     if (!isAuthenticated()) {
-      router.replace('/login');
+      window.location.href = '/login';
+    } else {
+      setReady(true);
     }
-  }, [router]);
+  }, []);
 
-  if (typeof window !== 'undefined' && !isAuthenticated()) return null;
+  if (!ready) return null;
 
   return (
     <div className={styles.layout}>

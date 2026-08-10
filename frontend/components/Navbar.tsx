@@ -20,7 +20,7 @@ export default function Navbar() {
 
   function handleLogout() {
     logout();
-    router.push('/login');
+    window.location.href = '/login';
   }
 
   return (
