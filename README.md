@@ -4,6 +4,18 @@ Sistema de gestión de tareas de equipo con seguimiento de estado, prioridad y r
 
 ---
 
+## Vista de la aplicación
+
+| Dashboard | Lista de Tareas |
+|:---:|:---:|
+| ![Dashboard](docs/screenshots/dashboard.png) | ![Tasks](docs/screenshots/tasks.png) |
+
+| Filtros activos | Modal de nueva tarea |
+|:---:|:---:|
+| ![Filtros](docs/screenshots/tasks-filters.png) | ![Modal](docs/screenshots/tasks-modal.png) |
+
+---
+
 ## Stack tecnológico
 
 | Capa | Tecnología | Versión | Justificación |
